@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; padding-top: 40px; margin: 0; }
+        
+        /* Khung bao trùm toàn bộ nội dung */
+        .main-wrapper {
+            position: relative;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+        /* Thanh xanh trên cùng của khung bao trùm */
+        .main-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: #00f2ea;
+            border-radius: 12px 12px 0 0;
+        }
+
+        h1 { font-size: 24px; margin-bottom: 5px; color: #fff; }
+        .blue-text { color: #00f2ea; }
+        p { color: #888; font-size: 14px; margin-bottom: 25px; }
+
+        /* Style cho phần Key */
+        .key-label { text-align: left; font-size: 12px; margin-bottom: 5px; font-weight: bold; }
+        .input-box {
+            display: flex; align-items: center; background: #121212;
+            border: 1px solid #333; padding: 10px; border-radius: 8px; margin-bottom: 20px;
+        }
+        input { flex: 1; background: transparent; border: none; color: #fff; outline: none; }
+        .paste-icon { cursor: pointer; color: #00f2ea; }
+
+        button { width: 100%; padding: 12px; margin: 8px 0; background-color: #00f2ea; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        .footer-icons { display: flex; justify-content: space-around; margin-top: 20px; }
+        .icon-box { color: #00f2ea; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <h1>Aimlock <span class="blue-text">Premium v5</span></h1>
+        <p>Log in to start session</p>
+        
+        <div class="key-label">Key</div>
+        <div class="input-box">
+            <input type="text" id="keyInput" placeholder=" ">
+            <span class="paste-icon" onclick="pasteKey()">📋</span>
+        </div>
+        
+        <button onclick="checkKey()">Login</button>
+        <button style="background-color: #00f2ea;">Get Key</button>
+        
+        <div class="footer-icons">
+            <div class="icon-box"><div>✈️</div><span>Group</span></div>
+            <div class="icon-box"><div>✈️</div><span>Channel</span></div>
+        </div>
+    </div>
+
+        <script>
+        function checkKey() {
+            var key = document.getElementById("keyInput").value;
+            // "AndroidBridge" phải khớp với tên bạn khai báo trong Java
+            // "thongBaoThanhCong" phải khớp với tên hàm trong Java
+            if (key === "161213") {
+                AndroidBridge.thongBaoThanhCong();
+            } else {
+                AndroidBridge.thongBaoSaiKey();
+            }
+        }
+        function pasteKey() {
+            navigator.clipboard.readText().then(text => { document.getElementById("keyInput").value = text; });
+        }
+    </script>
+</body>
+</html>
